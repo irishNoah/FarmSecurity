@@ -239,8 +239,6 @@ __#6 참고 자료__ <br>
 1. [전·후처리를 이용한 딥러닝 기반의 주차여부인식](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002519323) <br>
 2. [파이썬 코드를 이용한 파이카메라 제어](https://neosarchizo.gitbooks.io/raspberrypiforsejonguniv/content/chapter4.html) <br>
 
-<br><br> 
-
 ## 5️⃣ 차영상 이후 YOLO 실행 <br>
 ✔️ 실제 촬영되는 영상을 입력받을 경우, 계속 YOLO로 탐지를 진행하고 있으면 프로그램에 과부하가 높을 것으로 예상 <br> 
 ✔️ 이에 따라, 먼저 입력된 영상 속에서 차영상이 나타날 경우에 YOLO를 가동시켜 해당 객체가 동물/새/사람인지 구분 <br>
