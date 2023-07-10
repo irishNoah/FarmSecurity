@@ -1,9 +1,9 @@
 # :blue_book: 프로젝트 소개
 
-## :bell: 프로젝트 주제
+## :fire: 프로젝트 주제
 :heavy_check_mark: AI를 이용한 농작물 피해 완화 시스템
 
-## :beginner: 개발 배경
+## :fire: 개발 배경
 <div align="center">
   <img src="https://user-images.githubusercontent.com/80700537/179216377-5c0d525e-64dd-4a1e-8bd0-22841a7d0f2d.JPG" alt="img1"/>
   
@@ -20,7 +20,7 @@
 :heavy_check_mark: 개발 배경을 통해 확인할 수 있는 피해 규모 완화 위해 사람이 직접 유해야생동물 포획 시 인건비, 안전 등 고려요소가 많음<br>
 :heavy_check_mark: 이에 따라, 사람 이외의 피해 규모 완화 위한 무인 시스템 필요성을 느껴 해당 프로젝트 개발<br>
 
-## :sweat_drops: 개발 설계
+## :fire:: 개발 설계
 :one: __객체 탐지를 위해 AI 활용__<br>
 :heavy_check_mark: 객체는 [사람/동물/새/사물]로 구분<br>
 :heavy_check_mark: 객체 중 새 및 동물은 퇴치 대상에 해당 <br>
@@ -36,7 +36,7 @@
 :four: __애플리케이션을 통한 퇴치 알림 서비스__<br>
 :heavy_check_mark: 퇴치 대상 식별 및 퇴치 단계, 퇴치 여부를 농장 주인에게 알림<br> 
 
-## 🐟 H/W & S/W 구성도<br>
+## :fire: H/W & S/W 구성도<br>
 __#1 단순 구성도__
 <div align="center">
   <img src="https://user-images.githubusercontent.com/80700537/186291096-df9253c7-dadf-42e8-898d-3786f0734994.JPG" width="800" height="500"/>
@@ -56,17 +56,17 @@ __#3 구성도 설명__ <br>
 ✔️ 서버는 실시간으로 AI 모듈에서 보내는 정보를 감지. 감지된 정보가 있을 경우 해당 정보를 DB에 삽입. 또한 이 정보를 사용자에게 파이어베이스 알림을 통해 전송 {-> 탐지 객체 있을 경우 사용자가 알아야 하므로} <br>
 ✔️ 사용자가 과거 기록 확인 요청할 경우 해당 요청 정보 확인 가능 <br>
 
-## 👬 ERD <br>
+## :fire: ERD <br>
 <div align="center">
   <img src="https://user-images.githubusercontent.com/80700537/188640237-c1407dee-c22d-4075-9293-b1dc26ec1a10.JPG" alt="ERD" width="600" height="450"/>
 </div> <br>
 
-## :chart_with_upwards_trend: 순서도
+## :fire: 순서도
 <div align="center">
   <img src="https://user-images.githubusercontent.com/80700537/179218577-c5aa5d2d-a47b-4818-831c-6e1da456e6f2.JPG" alt="img2"/>
 </div>
 
-## :dart: 사용 Tool / 사이트 / 프레임워크
+## :fire: 사용 Tool / 사이트 / 프레임워크
 
 | 구분 | 사용 Tool / 사이트 / 프레임워크 |     
 | :------: | :-----------------------------------------------:|
@@ -88,17 +88,17 @@ __#3 구성도 설명__ <br>
   <p>로그 기록 / 카메라 관리 / 사용자페이지</p>  
 </div>
 
-- "로그 기록"에서는 동물들이 과거부터 현재까지 유해동물이 농경지에 침입시 탐지한 시간 및 대응 단계를 확인할 수 있다.
-- "카메라 관리"는 사용자의 농경지에 있는 카메라를 등록/삭제할 수 있다.
-- "회원정보"에서는 정보변경/로그아웃/회원탈퇴를 할 수 있다.
+✔️ "로그 기록"에서는 동물들이 과거부터 현재까지 유해동물이 농경지에 침입시 탐지한 시간 및 대응 단계를 확인할 수 있다. <br>
+✔️ "카메라 관리"는 사용자의 농경지에 있는 카메라를 등록/삭제할 수 있다. <br>
+✔️ "회원정보"에서는 정보변경/로그아웃/회원탈퇴를 할 수 있다. <br>
 
 <div align="center">
   <img width="80%" src="https://github.com/irishNoah/FarmSecurity/assets/80700537/0f3b99da-52fa-48c1-a3d2-83e95a543895"/> <br/>
   <p>푸쉬 알림 누르기 전 / 푸쉬 알림 누른 후</p>  
 </div>
 
-- 푸쉬 알림 누르기 전 > 좌측 이미지와 같이, 동물이 인식될 경우 왼쪽과 같이 푸쉬 알림이 온다.
-- 푸시 알림 누를 경우 > 우측 이미지와 같이, 동물이 인식된 사진 및 데이터를 사용자에게 보여준다.
+✔️ 푸쉬 알림 누르기 전 > 좌측 이미지와 같이, 동물이 인식될 경우 왼쪽과 같이 푸쉬 알림이 온다. <br>
+✔️ 푸시 알림 누를 경우 > 우측 이미지와 같이, 동물이 인식된 사진 및 데이터를 사용자에게 보여준다. <br>
 
 ### 기타 기능
 <div align="center">
@@ -106,4 +106,37 @@ __#3 구성도 설명__ <br>
   <p>앱 로딩 / 회원가입 / 로그인</p>  
 </div>
 
-- 차례대로 앱 로딩 / 회원가입 / 로그인에 관련한 화면이다.
+✔️ 차례대로 앱 로딩 / 회원가입 / 로그인에 관련한 화면이다. <br>
+
+## :fire: 시연 영상
+✔️ [모바일 어플리케이션 시연 영상(With AI 탐지)](https://youtu.be/LWhlDqM6Kf8) <br>
+
+## :fire: 참여 대회 및 한국정보기술학회 투고 논문(2022년)
+:one: __2022 KOAT 아이디어 경진대회__ <br>
+> :running: [제출 파일 다운로드하러 가기](https://github.com/irishNoah/FarmSecurity_irish/blob/main/contest_exhibit/2022_KOAT/%EB%B0%95%EC%B0%BD%EC%98%81_2022_KOAT%ED%98%81%EC%8B%A0%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%EA%B3%B5%EB%AA%A8%EC%A0%84_AI%EB%A5%BC%EC%9D%B4%EC%9A%A9%ED%95%9C%EB%86%8D%EC%9E%91%EB%AC%BC%ED%94%BC%ED%95%B4%EC%99%84%ED%99%94%EC%8B%9C%EC%8A%A4%ED%85%9C.hwp)
+<br>
+
+:two: __2022 청소년/청년 아이디어 경진대회__ <br>
+> :running: [제출 파일 다운로드하러 가기](https://github.com/irishNoah/FarmSecurity_irish/blob/main/contest_exhibit/2022_%EC%B2%AD%EC%86%8C%EB%85%84%26%EC%B2%AD%EB%85%84/FarmSecurity(%EB%B0%95%EC%B0%BD%EC%98%81)_2022_%EC%B2%AD%EC%86%8C%EB%85%84%EC%B2%AD%EB%85%84_%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4_%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C.hwp)
+<br>
+
+:three: __AI를 이용한 농작물 피해 완화 시스템__ <br>
+✔️ 우수논문상 은상 수상 <br>
+> :running: [제출 파일 다운로드하러 가기](https://github.com/irishNoah/FarmSecurity_irish/blob/main/KIIT/%EB%B0%95%EC%B0%BD%EC%98%81_AI%EB%A5%BC%EC%9D%B4%EC%9A%A9%ED%95%9C%EB%86%8D%EC%9E%91%EB%AC%BC%ED%94%BC%ED%95%B4%EC%99%84%ED%99%94%EC%8B%9C%EC%8A%A4%ED%85%9C.hwp)
+<br>
+
+
+:four: __영상인식에서 전처리 유무 및 환경변화에 따른 객체 인식률 비교__ <br>
+✔️ 우수논문상 동상 수상 <br>
+> :running: [제출 파일 다운로드하러 가기](https://github.com/irishNoah/FarmSecurity_irish/blob/main/KIIT/%EC%A7%84%EB%AF%BC%EC%A3%BC_%EC%98%81%EC%83%81%EC%9D%B8%EC%8B%9D%EC%97%90%EC%84%9C%EC%A0%84%EC%B2%98%EB%A6%AC%EC%9C%A0%EB%AC%B4%EB%B0%8F%ED%99%98%EA%B2%BD%EB%B3%80%ED%99%94%EC%97%90%EB%94%B0%EB%A5%B8%EA%B0%9D%EC%B2%B4%EC%9D%B8%EC%8B%9D%EB%A5%A0%EB%B9%84%EA%B5%90.hwp)
+<br>
+
+## :fire: 소감
+### 좋았던 점
+✔️ 약 8개월 정도의 프로젝트를 통해 2번의 우수논문상을 얻을 수 있어 좋았음 <br>
+✔️ 처음으로 한 Java 기반 프로젝트에서 Spring Boot와 Rest API를 활용하여 좀 더 개발자로써 성장할 수 있어서 좋았음 <br>
+✔️ 첫 모바일 기반 프로젝트에서 푸쉬 알림을 포함하여 각 프로그램과 연계할 수 있는 과정을 겪을 수 있어서 좋았음 <br>
+
+### 아쉬웠던 점
+✔️ 카메라를 한 대로 프로젝트를 진행했기에 여러 사용자가 접속을 못하는 점을 개선하면 좋겠음 <br>
+✔️ 실제로 playstore에 등록을 해서 농업인들이 사용하면 좋겠음 <br>
