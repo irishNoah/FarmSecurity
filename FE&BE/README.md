@@ -18,8 +18,8 @@
 4. 앱 서버는 Registration Token, API Key, 전송할 메시지를 이용하여 GCM에 메시지를 전송 <br>
 5. FCM은 앱 서버로부터 전달받은 메시지를 해당 클라이언트 앱에 메시지를 전송 <br>
 
-## 코드
-:one: 파이어베이스를 통해 데이터 페이로드 형식의 알람 메시지 수신
+## FCM 핵심 코드
+### :one: 파이어베이스를 통해 데이터 페이로드 형식의 알람 메시지 수신
 ```Java
 @Override
 public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -33,7 +33,7 @@ public void onMessageReceived(RemoteMessage remoteMessage) {
 - 이와 동시에 파이어베이스에 관련 정보가 전송되게 되고, 이 정보는 FCM을 거쳐 어플리케이션에 데이터 페이로드 형식으로 도착하게 된다.
 - 이후, 아래 sendNotification() 함수에서 이 페이로드를 처리하도록 한다.
 
-:two: 사용자에게 보여줄 알림 형식에 맞게 데이터 페이로드 형식 처리하기
+### :two: 사용자에게 보여줄 알림 형식에 맞게 데이터 페이로드 형식 처리하기
 ```Java
 private void sendNotification(String body, String title) {
     Intent intent = new Intent(this, AlarmActivity.class);
@@ -59,12 +59,141 @@ private void sendNotification(String body, String title) {
 
 # Spring Boot
 ## Spring Boot와 Maria DB 연동
+```Java
+public class DBConfig { // Sprinboot & maria DB 연동
 
-## SQL 쿼리(Controller)
+    @Primary
+    @Bean(name = "maria_dataSource")
+    @ConfigurationProperties("spring.data.maria")
+    public DataSource mariaDataSource() {
+        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+    }
 
-## Firebase에서 정보 받아와 Android Studio에 송신
+    @Primary
+    @Bean(name = "mariaDB_entityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            @Qualifier("maria_dataSource") DataSource dataSource) {
+        Map<String, String> map = new HashMap<>();
+        map.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+        map.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+        return builder.dataSource(dataSource)
+                .packages("com.farmsecurity.restapi.model") // TODO Model 패키지 지정
+                .properties(map)
+                .build();
+    }
 
-## restapi/AlarmScheduler.java
+    @Primary
+    @Bean(name = "mariaDB_transactionManager")
+    public PlatformTransactionManager transactionManager(
+            @Qualifier("mariaDB_entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
+    }
+}
+```
+- mariaDataSource()를 통해 빌드를 진행한다.
+- entityManagerFactory()를 통해 DB와 실제 연동을 진행한다.
+- transactionManager()를 통해 어플리케이션이나 파이어베이스를 통해 수행되는 쿼리에 맞게, 영속/비영속 등을 진행하는 엔티티 메니저를 생성한다.
+
+## 푸쉬 알림 송신
+```Java
+// 파이어베이스 메시지 보내기
+public void sendMessageTo(String targetToken, String title, String body) throws IOException {
+    String message = makeMessage(targetToken, title, body);
+    OkHttpClient client = new OkHttpClient();
+    RequestBody requestBody = RequestBody.create(message, MediaType.get("application/json; charset=utf-8"));
+    Request request = new Request.Builder()
+            .url(API_URL)
+            .post(requestBody)
+            .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
+            .addHeader(HttpHeaders.CONTENT_TYPE, "application/json; UTF-8")
+            .build();
+
+    Response response = client.newCall(request).execute();
+
+    System.out.println(response.body().string());
+}
+
+// 파이어베이스 메시지 만들기
+private String makeMessage(String targetToken, String title, String body) throws JsonParseException, JsonProcessingException {
+    FcmMessage fcmMessage = FcmMessage.builder()
+            .message(FcmMessage.Message.builder()
+                    .token(targetToken)
+                    /*
+                    .notification(FcmMessage.Notification.builder()
+                            .title(title)
+                            .body(body)
+                            .image(null)
+                            .build()
+                    )
+                    */
+                    .data(FcmMessage.FcmData.builder()
+                            .title(title)
+                            .body(body)
+                            .image(null)
+                            .build()
+                    ).build()).validateOnly(false).build();
+
+    return objectMapper.writeValueAsString(fcmMessage);
+}
+
+// 안드로이드 토큰 얻어오기
+private String getAccessToken() throws IOException {
+
+    // 안드로이드 스튜디오 json 파일 얻어오기
+    String firebaseConfigPath = "firebase/firebase_service_key.json";
+
+    GoogleCredentials googleCredentials = GoogleCredentials
+            .fromStream(new ClassPathResource(firebaseConfigPath).getInputStream())
+            .createScoped(List.of("https://www.googleapis.com/auth/cloud-platform"));
+
+    googleCredentials.refreshIfExpired();
+    return googleCredentials.getAccessToken().getTokenValue();
+}
+```
+- getAccessToken()을 통해서 사용자의 안드로이드에서 토큰을 얻어온다.
+- 해당 토큰을 기반으로 하여 makeMessage()에서 푸쉬 알림 메시지를 만든다.
+- makeMessage()에서 만들어진 메시지를 sendMessageTo()를 통해 안드로이드에 전송한다.
+
+## 보유하고 있던 로그 기록 삭제
+```Java
+//매일 0시 1분에 날짜 체크
+@Scheduled(cron = "0 1 0 * * * ")
+public void DailyCheck(){
+    int idx = 0;
+    // 로그 테이블 로그 전체 검색
+    List<Log> logs = logRepository.findAll();
+    LocalDateTime today = LocalDateTime.now();
+    for (Log log : logs) {
+        // 로그 테이블의 시간 데이터와 오늘의 시간 비교
+        String time = logs.get(idx).getTime();
+        CompareDate(time, today);
+        idx ++;
+    }
+}
+
+// 날짜 비교
+public void CompareDate (String t, LocalDateTime today){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm:ss");
+    LocalDateTime time = LocalDateTime.parse(t,formatter);
+    // 로그 테이블에 있는 시간 데이터를 정해진 타입에 맞게 변경
+    LocalDate timeDate = LocalDate.from(time);
+
+    // 기존 시간 데이터에 한 달 더해주기
+    LocalDate timeDate2 = timeDate.plusMonths(1);
+    LocalDate todayDate = LocalDate.from(today);
+
+    if(timeDate2.isEqual(todayDate)){
+        // 삽입된 데이터는 한 달이 지나면 삭제
+        logRepository.deleteByTime(t);
+        System.out.println("삭제완료");
+    }
+}
+```
+- 각 사용자에게 있는 로그(유해동물 탐지 시간 및 대응 단계)를 무한히 가질 경우 비효율적이라고 생각했다.
+- 따라서, 로그 생성 시점을 기준으로 한 달이 지난 경우 DB에서 삭제하도록 하였다.
 
 # Rest API
 - 사용자나 어플리케이션 서비스에서 어떤 정보를 (등록/조회/수정/삭제)할 때, Rest API 규칙에 맞게 처리하도록 한다.
@@ -129,10 +258,5 @@ public interface CameraAPI {
     Call<Void> deleteCamera(@Path("memId") String id);
 }
 ```
-
-## 참고
-- [참고1](https://velog.io/@eeheaven/AndroidStudio-SpringBoot-KnockKnock-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80-0118-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EC%97%B0%EA%B2%B0)
-
-- [참고2](https://velog.io/@plz_no_anr/Android-REST-API)
 
 # 느낀점
