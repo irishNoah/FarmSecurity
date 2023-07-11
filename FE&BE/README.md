@@ -1,6 +1,6 @@
-✔️ 이 README.md에서는 제 담당 파트였던 Spring Boot 및 연동 부분 위주로 설명드립니다.
-✔️ [프로젝트 소개&설계&모바일 화면 & 시연 영상 관련 글 이동](https://github.com/irishNoah/FarmSecurity)
-✔️ [프로젝트 AI 관련 글 이동](https://github.com/irishNoah/FarmSecurity/tree/main/AI)
+✔️ 이 README.md에서는 제 담당 파트였던 Spring Boot 및 연동 부분 위주로 설명드립니다. <br>
+✔️ [프로젝트 소개&설계&모바일 화면 & 시연 영상 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity) <br>
+✔️ [프로젝트 AI 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity/tree/main/AI) <br>
 
 # :fire: Firebase(푸쉬 알림)
 ## 🙍‍♂ Firebase를 선택한 이유
@@ -31,9 +31,9 @@ public void onMessageReceived(RemoteMessage remoteMessage) {
     }
 }
 ```
-✔️ 탐지된 유해동물이 있다면, 이와 관련된 사진 및 정보가 DB에 저장된다.
-✔️ 이와 동시에 파이어베이스에 관련 정보가 전송되게 되고, 이 정보는 FCM을 거쳐 어플리케이션에 데이터 페이로드 형식으로 도착하게 된다.
-✔️ 이후, 아래 sendNotification() 함수에서 이 페이로드를 처리하도록 한다.
+✔️ 탐지된 유해동물이 있다면, 이와 관련된 사진 및 정보가 DB에 저장된다. <br>
+✔️ 이와 동시에 파이어베이스에 관련 정보가 전송되게 되고, 이 정보는 FCM을 거쳐 어플리케이션에 데이터 페이로드 형식으로 도착하게 된다. <br>
+✔️ 이후, 아래 sendNotification() 함수에서 이 페이로드를 처리하도록 한다. <br>
 
 ### :two: 사용자에게 보여줄 알림 형식에 맞게 데이터 페이로드 형식 처리하기
 ```Java
@@ -56,8 +56,8 @@ private void sendNotification(String body, String title) {
     }
 }
 ```
-✔️ onMessageReceived()에서 받은 페이로드를 토대로 사용자에게 보여줄 형식에 맞게 데이터를 처리한다.
-✔️ 데이터를 처리한 이후, 이를 사용자가 어플리케이션에서 볼 푸쉬 알림 형식에 맞게 화면단에 배치한다.
+✔️ onMessageReceived()에서 받은 페이로드를 토대로 사용자에게 보여줄 형식에 맞게 데이터를 처리한다. <br>
+✔️ 데이터를 처리한 이후, 이를 사용자가 어플리케이션에서 볼 푸쉬 알림 형식에 맞게 화면단에 배치한다. <br>
 
 # :fire: Spring Boot
 ## 🙍‍♂ Spring Boot와 Maria DB 연동
@@ -95,9 +95,9 @@ public class DBConfig { // Sprinboot & maria DB 연동
     }
 }
 ```
-✔️ mariaDataSource()를 통해 빌드를 진행한다.
-✔️ entityManagerFactory()를 통해 DB와 실제 연동을 진행한다.
-✔️ transactionManager()를 통해 어플리케이션이나 파이어베이스를 통해 수행되는 쿼리에 맞게, 영속/비영속 등을 진행하는 엔티티 메니저를 생성한다.
+✔️ mariaDataSource()를 통해 빌드를 진행한다. <br>
+✔️ entityManagerFactory()를 통해 DB와 실제 연동을 진행한다. <br>
+✔️ transactionManager()를 통해 어플리케이션이나 파이어베이스를 통해 수행되는 쿼리에 맞게, 영속/비영속 등을 진행하는 엔티티 메니저를 생성한다. <br>
 
 ## 🙍‍♂ 푸쉬 알림 송신
 ```Java
@@ -155,9 +155,9 @@ private String getAccessToken() throws IOException {
     return googleCredentials.getAccessToken().getTokenValue();
 }
 ```
-✔️ getAccessToken()을 통해서 사용자의 안드로이드에서 토큰을 얻어온다.
-✔️ 해당 토큰을 기반으로 하여 makeMessage()에서 푸쉬 알림 메시지를 만든다.
-✔️ makeMessage()에서 만들어진 메시지를 sendMessageTo()를 통해 안드로이드에 전송한다.
+✔️ getAccessToken()을 통해서 사용자의 안드로이드에서 토큰을 얻어온다. <br>
+✔️ 해당 토큰을 기반으로 하여 makeMessage()에서 푸쉬 알림 메시지를 만든다. <br>
+✔️ makeMessage()에서 만들어진 메시지를 sendMessageTo()를 통해 안드로이드에 전송한다. <br>
 
 ## 🙍‍♂ 보유하고 있던 로그 기록 삭제
 ```Java
@@ -194,11 +194,11 @@ public void CompareDate (String t, LocalDateTime today){
     }
 }
 ```
-✔️ 각 사용자에게 있는 로그(유해동물 탐지 시간 및 대응 단계)를 무한히 가질 경우 비효율적이라고 생각했다.
-✔️ 따라서, 로그 생성 시점을 기준으로 한 달이 지난 경우 DB에서 삭제하도록 하였다.
+✔️ 각 사용자에게 있는 로그(유해동물 탐지 시간 및 대응 단계)를 무한히 가질 경우 비효율적이라고 생각했다. <br>
+✔️ 따라서, 로그 생성 시점을 기준으로 한 달이 지난 경우 DB에서 삭제하도록 하였다. <br>
 
 # :fire: Rest API (Anroid Studio)
-✔️ 사용자나 어플리케이션 서비스에서 어떤 정보를 (등록/조회/수정/삭제)할 때, Rest API 규칙에 맞게 처리하도록 한다.
+✔️ 사용자나 어플리케이션 서비스에서 어떤 정보를 (등록/조회/수정/삭제)할 때, Rest API 규칙에 맞게 처리하도록 한다. <br>
 
 ## 🙍‍♂ 회원 CRUD
 ``` Java
@@ -263,15 +263,15 @@ public interface CameraAPI {
 
 # :fire: 느낀점
 ## 🙍‍♂ 좋았던 점
-- 작년까지의 팀 프로젝트에서는 PHP로 진행했었다. 이 당시에는 최대한 테이블 설계를 좋게 구성해도 테이블에 수정 사항이 발생했을 경우, DB뿐만 아니라 PHP에서 SQL 쿼리를 변경해주어야 했다. 하지만, 이번 프로젝트에서는 Java와 Spring Boot를 통해서 개발을 진행했고, 테이블을 수정해야 하는 상황이 발생해도 유연하게 변경할 수 있었던 점이 좋았다.
-- FCM을 토대로 사용자에게 어떠한 방식으로 알림을 생성하고 또 전송하는지의 과정을 배울 수 있어서 좋았다.
-- [Spring Boot/FCM/Android Studio/Maria DB]과 같이 다양한 tool을 활용하여 상호 간 연계하는 과정을 배울 수 있어 좋았다.
+✔️ 작년까지의 팀 프로젝트에서는 PHP로 진행했었다. 이 당시에는 최대한 테이블 설계를 좋게 구성해도 테이블에 수정 사항이 발생했을 경우, DB뿐만 아니라 PHP에서 SQL 쿼리를 변경해주어야 했다. 하지만, 이번 프로젝트에서는 Java와 Spring Boot를 통해서 개발을 진행했고, 테이블을 수정해야 하는 상황이 발생해도 유연하게 변경할 수 있었던 점이 좋았다. <br>
+✔️ FCM을 토대로 사용자에게 어떠한 방식으로 알림을 생성하고 또 전송하는지의 과정을 배울 수 있어서 좋았다. <br>
+✔️ [Spring Boot/FCM/Android Studio/Maria DB]과 같이 다양한 tool을 활용하여 상호 간 연계하는 과정을 배울 수 있어 좋았다. <br>
 
 ## 🙍‍♂ 아쉬웠던 점
-- Restful하지 못하게 개발했던 점이 아쉬웠다.
-- Test를 많이 못해본 점이 아쉬웠다.
+✔️ Restful하지 못하게 개발했던 점이 아쉬웠다. <br>
+✔️ Test를 많이 못해본 점이 아쉬웠다. <br>
 
 ## 🙍‍♂ 개인적인 생각
-- 비록, 아쉬웠던 점이 있었지만 이전 프로젝트에 비해 훨씬 큰 규모로 진행할 수 있었던 점이 좋았던 것 같다. 개인적으로 Java와 Spring을 활용해서 백엔드를 구현해보고 싶었는데, 해당 프로젝트를 통해서 실현할 수 있었던 것이 좋았다.
-- 이번에 Spring 같은 경우 구글링이나 책을 통해서 공부를 했었다. 물론, 성공리에 프로젝트를 마무리했으나, 무엇인가 부족하다는 느낌이 들었다. 인프런에서 스프링으로 유명한 "김영한" 개발자 님의 강의를 추후에 들어봐서 스프링 실력을 키워봐야 겠다.
-- 다음 프로젝트에서는 Resftful한 개발, Test 위주의 개발, 다양한 API(지도, 날씨 등)을 적용한 개발, 대량 트랜잭션에 대비한 개발을 해보고 싶다.
+✔️ 비록, 아쉬웠던 점이 있었지만 이전 프로젝트에 비해 훨씬 큰 규모로 진행할 수 있었던 점이 좋았던 것 같다. 개인적으로 Java와 Spring을 활용해서 백엔드를 구현해보고 싶었는데, 해당 프로젝트를 통해서 실현할 수 있었던 것이 좋았다. <br>
+✔️ 이번에 Spring 같은 경우 구글링이나 책을 통해서 공부를 했었다. 물론, 성공리에 프로젝트를 마무리했으나, 무엇인가 부족하다는 느낌이 들었다. 인프런에서 스프링으로 유명한 "김영한" 개발자 님의 강의를 추후에 들어봐서 스프링 실력을 키워봐야 겠다. <br>
+✔️ 다음 프로젝트에서는 Resftful한 개발, Test 위주의 개발, 다양한 API(지도, 날씨 등)을 적용한 개발, 대량 트랜잭션에 대비한 개발을 해보고 싶다. <br>
