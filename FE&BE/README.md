@@ -33,6 +33,7 @@ public void onMessageReceived(RemoteMessage remoteMessage) {
 - 이와 동시에 파이어베이스에 관련 정보가 전송되게 되고, 이 정보는 FCM을 거쳐 어플리케이션에 데이터 페이로드 형식으로 도착하게 된다.
 - 이후, 아래 sendNotification() 함수에서 이 페이로드를 처리하도록 한다.
 
+:two: 사용자에게 보여줄 알림 형식에 맞게 데이터 페이로드 형식 처리하기
 ```Java
 private void sendNotification(String body, String title) {
     Intent intent = new Intent(this, AlarmActivity.class);
@@ -54,14 +55,82 @@ private void sendNotification(String body, String title) {
 }
 ```
 - onMessageReceived()에서 받은 페이로드를 토대로 사용자에게 보여줄 형식에 맞게 데이터를 처리한다.
-- 
+- 데이터를 처리한 이후, 이를 사용자가 어플리케이션에서 볼 푸쉬 알림 형식에 맞게 화면단에 배치한다.
 
 # Spring Boot
-- hi
+## Spring Boot와 Maria DB 연동
+
+## SQL 쿼리(Controller)
+
+## Firebase에서 정보 받아와 Android Studio에 송신
+
+## restapi/AlarmScheduler.java
 
 # Rest API
-- hi
+- 사용자나 어플리케이션 서비스에서 어떤 정보를 (등록/조회/수정/삭제)할 때, Rest API 규칙에 맞게 처리하도록 한다.
 
+## 회원 CRUD
+``` Java
+public interface InitMyAPI {
+    //아이디로 검색
+    @GET("select/{id}")
+    Call<MainResponse> selectOne(@Path("id") String id);
+
+    //이름과 전화번호로 검색
+    @GET("select/{name}/{phone}")
+    Call<MainResponse> selectId(@Path("name") String name, @Path("phone") String phone);
+
+    //아이디와 전화번호로 검색
+    @GET("select2/{id}/{phone}")
+    Call<MainResponse> selectPw(@Path("id") String id, @Path("phone") String phone);
+
+    //회원가입 정보 입력
+    @POST("insert")
+    Call<SignUpResponse> insertOne(@Body SignUpRequest signUpRequest);
+
+    //입력한 아이디에 해당하는 계정 비밀번호 변경
+    @POST("update/{id}")
+    Call<MainResponse> updatePw(@Path("id") String id, @Body ChangePwRequest changePwRequest);
+
+    //로그인되어있는 아이디에 해당하는 계정 주소 변경
+    @POST("update2/{id}")
+    Call<MainResponse> updateAddress(@Path("id") String id, @Body ChangeAdRequest changeAdRequest);
+
+    //회원 테이블에서 해당 계정 정보 삭제
+    @DELETE("delete/{id}")
+    Call<Void> deleteOne(@Path("id") String id);
+}
+```
+
+## 로그 기록 검색
+```Java
+public interface LogAPI {
+    //로그인되어있는 계정에 해당하는 로그 검색
+    @GET("select/{memberId}")
+    Call<LogResponse> selectLog(@Path("memberId") String id);
+
+    //로그인되어있는 계정에 해당하는 로그 리스트 검색
+    @GET("select2/{memberId}")
+    Call<List<LogResponse>> selectLogList(@Path("memberId") String id);
+}
+```
+
+## 카메라 정보 (등록/조회/삭제)
+```Java
+public interface CameraAPI {
+    //로그인되어있는 계정으로 카메라 정보 등록
+    @POST("insert")
+    Call<CameraResponse> insertCamera(@Body CameraRequest cameraRequest);
+
+    @GET("select2/{memId}")
+    Call<CameraLogResponse> selectCamera(@Path("memId") String id);
+
+    @DELETE("delete/{memId}")
+    Call<Void> deleteCamera(@Path("memId") String id);
+}
+```
+
+## 참고
 - [참고1](https://velog.io/@eeheaven/AndroidStudio-SpringBoot-KnockKnock-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80-0118-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EC%97%B0%EA%B2%B0)
 
 - [참고2](https://velog.io/@plz_no_anr/Android-REST-API)
