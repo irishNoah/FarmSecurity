@@ -1,7 +1,8 @@
-✔️ 이 README.md에서는 제 담당 파트였던 Spring Boot 및 연동 부분 위주로 설명드립니다. <br>
-✔️ 설명 순서 > Spring Boot - 
-✔️ [프로젝트 소개&설계&모바일 화면 & 시연 영상 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity) <br>
-✔️ [프로젝트 AI 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity/tree/main/AI) <br>
+✔️ 이 README.md에서는 제 담당 파트였던 Spring Boot와 Firebase 위주로 설명드립니다. <br>
+✔️ 설명 순서 : Spring Boot > Firebase(푸쉬 알림) > 느낀점 <br>
+✔️ 다른 설명 글이 읽고 싶다면? <br>
+- [프로젝트 소개&설계&모바일 화면 & 시연 영상 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity) 
+- [프로젝트 AI 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity/tree/main/AI) <br>
 
 # :fire: Spring Boot
 ## 🙍‍♂ Spring Boot와 Maria DB 연동
