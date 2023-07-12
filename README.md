@@ -1,7 +1,7 @@
 # :blue_book: 프로젝트 소개
 
 ## :fire: 프로젝트 주제
-:heavy_check_mark: AI를 이용한 농작물 피해 완화 시스템
+:heavy_check_mark: AI를 활용한 농작물 피해 완화 시스템
 
 ## :fire: 개발 배경
 <div align="center">
