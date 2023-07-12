@@ -261,8 +261,8 @@ public interface CameraAPI {
 ```
 
 # :fire: 배포
-✔️ 아래 블로그를 참고하여 AWS EC2에서 배포 실행
-✔️ [참고 링크](https://velog.io/@swchoi0329/EC2-%EC%84%9C%EB%B2%84%EC%97%90-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EB%B0%B0%ED%8F%AC#ec2-%EC%84%A4%EC%A0%95)
+✔️ 아래 블로그를 참고하여 AWS EC2에서 배포 실행 <br>
+✔️ [참고 링크](https://velog.io/@swchoi0329/EC2-%EC%84%9C%EB%B2%84%EC%97%90-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EB%B0%B0%ED%8F%AC#ec2-%EC%84%A4%EC%A0%95) <br>
 
 # :fire: 느낀점
 ## 🙍‍♂ 좋았던 점
