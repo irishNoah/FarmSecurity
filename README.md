@@ -122,6 +122,10 @@ __#3 구성도 설명__ <br>
 > :running: [제출 파일 다운로드하러 가기](https://github.com/irishNoah/FarmSecurity/blob/main/KIIT/%ED%95%9C%EA%B5%AD%EC%A0%95%EB%B3%B4%EA%B8%B0%EC%88%A0%ED%95%99%ED%9A%8C_%EC%98%81%EC%83%81%EC%9D%B8%EC%8B%9D%EC%97%90%EC%84%9C%EC%A0%84%EC%B2%98%EB%A6%AC%EC%9C%A0%EB%AC%B4%EB%B0%8F%ED%99%98%EA%B2%BD%EB%B3%80%ED%99%94%EC%97%90%EB%94%B0%EB%A5%B8%EA%B0%9D%EC%B2%B4%EC%9D%B8%EC%8B%9D%EB%A5%A0%EB%B9%84%EA%B5%90.hwp.pdf)
 <br>
 
+## :fire: 백엔드 및 AI 소개글
+- [프로젝트 백엔드 부분 소개글로 이동하기](https://github.com/irishNoah/FarmSecurity/tree/main/FE%26BE)
+- [프로젝트 AI 부분 소개글로 이동하기](https://github.com/irishNoah/FarmSecurity/blob/main/AI/README.md)
+
 ## :fire: 소감
 ### 좋았던 점
 ✔️ 처음으로 한 Java 기반 프로젝트에서 Spring Boot와 Rest API를 활용하여 좀 더 개발자로써 성장할 수 있어서 좋았다. <br>
