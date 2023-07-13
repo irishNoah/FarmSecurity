@@ -1,6 +1,4 @@
 ✔️ 해당 MD는 프로젝트에서 AI와 관련된 부분을 중점으로 다룹니다. <br>
-✔️ AI 파트에서, 저(박창영)는 데이터셋 수집 위주로 했으므로 AI와 관련된 부분은 잘 모릅니다. <br>
-✔️ 다만, 해당 MD는 프로젝트 설명 차원에서 작성했을 뿐이니 참고 바랍니다. <br>
 ✔️ 다른 설명 글이 읽고 싶다면? <br>
 - [프로젝트 소개&설계&모바일 화면 & 시연 영상 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity/tree/main)
 - [프로젝트 백엔드 관련 글로 이동하기](https://github.com/irishNoah/FarmSecurity/blob/main/FE&BE/README.md)
