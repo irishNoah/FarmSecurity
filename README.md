@@ -3,6 +3,37 @@
 ## :fire: 프로젝트 주제
 :heavy_check_mark: AI를 활용한 농작물 피해 완화 시스템
 
+## :fire: 역할 분담
+:heavy_check_mark: 박창영
+- 팀장 / 논문 작성
+- ERD 및 Workflow 설계
+- SpringBoot
+  - JPA 활용한 Member / Camera / Log 테이블 생성
+  - 단계별 퇴치 서비스 개발
+- AI에 학습할 데이터 수집
+
+:heavy_check_mark: 임병찬
+- 부팀장
+- SpringBoot & Firebase
+  - 알림 서비스 개발
+
+:heavy_check_mark: 권동원
+- Android Studio 활용 Mobile UI 개발
+
+:heavy_check_mark: 황종환
+- Android Studio 활용 Mobile UI 개발
+- Firebase & GCM
+  - 알림 서비스 개발
+
+:heavy_check_mark: 조은
+- AI 모델 학습 담당
+- Rasberry Pi
+  - 카메라로 인식된 물체를 Back-End에 송신
+  - Back-End에서 수신된 결과를 소리 / 빛 등의 센서로 출력
+
+:heavy_check_mark: 진민주
+- AI 모델 학습 담당
+
 ## :fire: 개발 배경
 <div align="center">
   <img src="https://user-images.githubusercontent.com/80700537/179216377-5c0d525e-64dd-4a1e-8bd0-22841a7d0f2d.JPG" alt="img1"/>
